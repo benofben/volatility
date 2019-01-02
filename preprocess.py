@@ -51,7 +51,7 @@ def withhold():
     pass
 
 def run():
-    consolidate()
+    #consolidate()
     normalize()
     withhold()
 
