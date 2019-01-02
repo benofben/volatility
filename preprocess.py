@@ -50,14 +50,13 @@ def normalize():
 
 def withhold():
     print('Withholding...')
-
-def sequence_dates():
-    print('Sequencing dates...')
+    if date<2012 then train
+    <2015 then test
+    else withholding
 
 def run():
     #consolidate()
-    normalize()
+    #normalize()
     withhold()
-    sequence_dates()
 
 run()
