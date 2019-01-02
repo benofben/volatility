@@ -40,8 +40,10 @@ def normalize():
                     else:
                         label=False
 
-                    output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
-                    writer.writerow(output_row)
+                    # drop data points with less than $10m in volume
+                    if n_volume>10:
+                        output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
+                        writer.writerow(output_row)
 
                 except ValueError:
                     pass
