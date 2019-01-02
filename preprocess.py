@@ -19,7 +19,7 @@ def normalize():
         writer = csv.writer(output)
 
         output_row=['TICKER', 'DATE', 'HIGH', 'LOW', 'CLOSE', 'VOLUME', 'LABEL']
-        writer.writerow(output_row)
+        output.writerow(output_row)
 
         with open('data/consolidated.csv') as input:
             reader = csv.DictReader(input)
