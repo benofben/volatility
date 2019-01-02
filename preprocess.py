@@ -42,7 +42,7 @@ def normalize():
                     label=False
 
                 output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
-                writer.writerow(output_row)
+                output.writerow(output_row)
 
                 # Unclear how to normalize date.  Need to think about this...
 
