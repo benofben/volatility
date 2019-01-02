@@ -17,32 +17,36 @@ def normalize():
     print('Normalizing...')
     with open('data/normalized.csv', 'w') as output:
         writer = csv.writer(output)
-
         output_row=['TICKER', 'DATE', 'HIGH', 'LOW', 'CLOSE', 'VOLUME', 'LABEL']
-        output.writerow(output_row)
+        writer.writerow(output_row)
 
         with open('data/consolidated.csv') as input:
             reader = csv.DictReader(input)
-
             for row in reader:
-                open=float(row['OPEN'])
-                high=float(row['HIGH'])
-                low=float(row['LOW'])
-                close=float(row['CLOSE'])
-                volume=float(row['VOLUME'])
+                print(row)
+                o=float(row['OPEN'])
+                h=float(row['HIGH'])
+                l=float(row['LOW'])
+                c=float(row['CLOSE'])
 
-                n_high=round(high/open*100,2)
-                n_low=round(low/open*100,2)
-                n_close=round(close/open*100,2)
-                n_volume=round(volume*open/1000000,2)
+                # We seem to have a data point with 0 volume where the value is null
+                try:
+                    v=float(row['VOLUME'])
+                except ValueError:
+                    v=0.0
 
-                if high/open>1.02:
+                n_high=round(h/o*100,2)
+                n_low=round(l/o*100,2)
+                n_close=round(c/o*100,2)
+                n_volume=round(v*o/1000000,2)
+
+                if h/o>1.02:
                     label=True
                 else:
                     label=False
 
                 output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
-                output.writerow(output_row)
+                writer.writerow(output_row)
 
                 # Unclear how to normalize date.  Need to think about this...
 
