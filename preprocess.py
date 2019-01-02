@@ -23,40 +23,39 @@ def normalize():
         with open('data/consolidated.csv') as input:
             reader = csv.DictReader(input)
             for row in reader:
-                print(row)
-                o=float(row['OPEN'])
-                h=float(row['HIGH'])
-                l=float(row['LOW'])
-                c=float(row['CLOSE'])
-
-                # We seem to have a data point with 0 volume where the value is null
                 try:
+                    o=float(row['OPEN'])
+                    h=float(row['HIGH'])
+                    l=float(row['LOW'])
+                    c=float(row['CLOSE'])
                     v=float(row['VOLUME'])
+
+                    n_high=round(h/o*100,2)
+                    n_low=round(l/o*100,2)
+                    n_close=round(c/o*100,2)
+                    n_volume=round(v*o/1000000,2)
+
+                    if h/o>1.02:
+                        label=True
+                    else:
+                        label=False
+
+                    output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
+                    writer.writerow(output_row)
+
                 except ValueError:
-                    v=0.0
-
-                n_high=round(h/o*100,2)
-                n_low=round(l/o*100,2)
-                n_close=round(c/o*100,2)
-                n_volume=round(v*o/1000000,2)
-
-                if h/o>1.02:
-                    label=True
-                else:
-                    label=False
-
-                output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
-                writer.writerow(output_row)
-
-                # Unclear how to normalize date.  Need to think about this...
+                    pass
 
 def withhold():
     print('Withholding...')
-    pass
+
+def sequence_dates():
+    print('Sequencing dates...')
 
 def run():
     #consolidate()
     normalize()
     withhold()
+    sequence_dates()
 
 run()
