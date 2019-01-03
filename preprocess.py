@@ -41,8 +41,8 @@ def normalize():
                     else:
                         label=False
 
-                    # drop data points with less than $10m in volume
-                    if n_volume>10:
+                    # drop data points with less than $10m in volume and sparse data
+                    if n_volume>10 and o != 0:
                         output_row=[row['TICKER'], row['DATE'], n_high, n_low, n_close, n_volume, label]
                         writer.writerow(output_row)
 
