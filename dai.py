@@ -3,12 +3,9 @@ from h2oai_client import Client
 
 h2oai = Client(address='http://129.213.63.69:12345', username='ben', password='ben')
 
-#train = h2oai.create_dataset_sync('data/train.csv')
-#test = h2oai.create_dataset_sync('data/test.csv')
-
 experiment = h2oai.start_experiment_sync(
     dataset_key = 'asd',
-    testset_key = 'asd',
+    testset_key = '123',
 
     accuracy = 10,
     time = 10,
