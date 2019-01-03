@@ -10,6 +10,8 @@ I stuffed the data in a Google Drive [here](https://drive.google.com/open?id=1RI
 
 That data is going to need a ton of preprocessing including normalization.  I'm going to try some methods I used in 2008-2010.  The model worked then and I think the macro conditions might be about the same now.  preprocess.py will consolidate the data, normalize it and then break it into various data sets to ensure proper withholding.
 
+Some of the data is sparse (missing high and low but has a close, etc) even though it shouldn't be.  I have a ticket open with Intrinio about that.
+
 ## Modeling
 
 I'm fiddling around with H2O.ai DAI.
