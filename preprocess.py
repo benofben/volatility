@@ -81,8 +81,8 @@ def withhold():
         file[filename].close()
 
 def run():
-    #consolidate()
-    #normalize()
+    consolidate()
+    normalize()
     withhold()
 
 run()
