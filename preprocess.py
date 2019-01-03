@@ -70,9 +70,9 @@ def withhold():
             year=d.year
 
             row=[row['TICKER'], row['DATE'], row['HIGH'], row['LOW'], row['CLOSE'], row['VOLUME'], row['LABEL']]
-            if year<2012:
+            if year<2015:
                 writer['train'].writerow(row)
-            elif year<2015:
+            elif year<2016:
                 writer['test'].writerow(row)
             else:
                 writer['withhold'].writerow(row)
