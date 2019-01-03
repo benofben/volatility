@@ -1,5 +1,5 @@
 import csv
-from dateutil.parser import parse
+from datetime import datetime
 
 def consolidate():
     print('Consolidating...')
@@ -62,13 +62,14 @@ def withhold():
         writer[filename] = csv.writer(file[filename])
         writer[filename].writerow(output_row)
 
-    with open('data/consolidated.csv') as input:
+    with open('data/normalized.csv') as input:
         reader = csv.DictReader(input)
         for row in reader:
-            date=row['DATE']
-            date=parse(date)
-            year=date.year()
+            d=row['DATE']
+            d=datetime.strptime(d, '%Y-%M-%d')
+            year=d.year
 
+            row=[row['TICKER'], row['DATE'], row['HIGH'], row['LOW'], row['CLOSE'], row['VOLUME'], row['LABEL']]
             if year<2012:
                 writer['train'].writerow(row)
             elif year<2015:
